@@ -7,8 +7,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     echo "El parametro este es post --> $post";
 }
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
-    $get = $_GET['parametro'];
-    echo "El parametro este es get --> $get";
+    echo 'Hola get';
 }
 
 ?>
