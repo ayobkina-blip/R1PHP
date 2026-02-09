@@ -1,49 +1,37 @@
 <?php
-$error = "";
-$success = "";
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = trim($_POST['name']);
-    $email = trim($_POST['email']);
-    $mensaje = trim($_POST['mensaje']);
-    
-    if (empty($name) || empty($email) || empty($mensaje)) {
-        $error = "Todos los campos son obligatorios.";
-    } else {
-        $success = "¡Registro completado con éxito!";
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $message = $_POST['message'];
+    $lr = '';
+
+    if(empty($name) || empty($email) || empty($message)){
+        $lr = '<p style = "color:red;">No pueden haber campos vacios</p>';
+    }else{
+        $lr = '<p style = "color:green;">Usted completo el formulario</p>';
     }
 }
+
 ?>
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Verificación de Campos</title>
-    <style>
-        form { display: flex; flex-direction: column; width: 300px; margin: 20px; }
-        input, textarea, button { margin-bottom: 10px; padding: 8px; }
-        .error { color: red; font-weight: bold; }
-        .success { color: green; font-weight: bold; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 <body>
 
-    <?php if ($error): ?>
-        <p class="error"><?php echo $error; ?></p>
-    <?php endif; ?>
-
-    <?php if ($success): ?>
-        <p class="success"><?php echo $success; ?></p>
-    <?php endif; ?>
-
-    <form action="" method="post">
-        <input type="text" name="name" placeholder="Nombre" value="<?php echo $_POST['name'] ?? ''; ?>">
-        <input type="email" name="email" placeholder="Email" value="<?php echo $_POST['email'] ?? ''; ?>">
-        <textarea name="mensaje" placeholder="Tu mensaje..."><?php echo $_POST['mensaje'] ?? ''; ?></textarea>
-        
-        <button type="submit">Enviar</button>
-    </form>
+    <?php echo $lr;?>
+    
+<form action="index.php" method="post">
+    <input type="text" name="name" placeholder="Nombre..."><br><br>
+    <input type="text" name="email" placeholder="Email..."><br><br>
+    <input type="text" name="message" placeholder="Mensaje..."><br><br>
+    <button type="submit">Enviar</button>
+</form>
 
 </body>
 </html>
